@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject tank;
+    private float speed = 2.0f;
     void Start()
     {
         
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
         //    p = new Vector3(p.x, p.y, p.z-1);
         //    tank.transform.position = p;
         //}
-        transform.Translate(0, 0, 1);
+        transform.Translate(Vector3.forward *Time.deltaTime * speed);
+        speed = speed + 0.04f;
     }
 }
