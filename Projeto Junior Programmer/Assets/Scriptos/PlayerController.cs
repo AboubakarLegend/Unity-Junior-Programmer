@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -8,7 +9,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     public GameObject tank;
     private float speed = 0.0f;
-    private float turnspeed = 5.0f;
+    private float turnspeed = 6.0f;
     void Start()
     {
         
@@ -32,27 +33,52 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.UpArrow))
         {
             transform.Translate(Vector3.forward * Time.deltaTime * speed);
-            speed = speed + 0.02f;
+            speed = speed + 0.03f;
         }
         else
         {
-            if(speed <= 0)
+            if (Input.GetKey(KeyCode.DownArrow))
             {
-                speed=0;
+                if (speed > 0)
+                {
+                    speed = speed - 0.07f;
+                }
+                else if (speed <= 0)
+                {
+                    speed = - 1.0f;
+                }
+            }
+            else if (speed < 0)
+            {
+                speed=speed+0.03f;
             }
             else if (speed > 0)
             {
-                speed = speed - 0.04f;
+                speed = speed - 0.03f;
             }
             transform.Translate(Vector3.forward * Time.deltaTime * speed);
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            transform.Translate(Vector3.right * Time.deltaTime * turnspeed);
+            if(speed > 0)
+            { 
+                transform.Rotate(Vector3.up * Time.deltaTime * turnspeed); 
+            }
+            else if (speed < 0)
+            {
+                transform.Rotate(Vector3.down * Time.deltaTime * turnspeed);
+            }
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.Translate(Vector3.left * Time.deltaTime * turnspeed);
+            if (speed > 0)
+            {
+                transform.Rotate(Vector3.down * Time.deltaTime * turnspeed);
+            }
+            else if (speed < 0)
+            {
+                transform.Rotate(Vector3.up * Time.deltaTime * turnspeed);
+            }
         }
     }
 }
