@@ -16,5 +16,21 @@ public class FollowPlayer : MonoBehaviour
     void LateUpdate()
     {
         transform.position = player.transform.position + offset;
+        if(offset == new Vector3(0, 5, -5))
+        {
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                offset = new Vector3(0, 3, 2);
+            }
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                offset = new Vector3(0, 5, -5);
+            }
+        }
+        
+
     }
 }

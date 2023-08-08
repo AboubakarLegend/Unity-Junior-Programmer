@@ -6,13 +6,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public GameObject tank;
     private float speed = 0.0f;
     private float turnspeed = 6.0f;
     void Start()
     {
-        
+        print(gameObject.name);
     }
 
     // Update is called once per frame
